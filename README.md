@@ -1,3 +1,10 @@
+# ollama-embeddings
+This repository contains a Dockerfile for running an embeddings model using Ollama on a local server.
+
+Original README below:
+
+---
+
 How to run this:
 
 1. build the Docker image from the Dockerfile:
@@ -25,7 +32,7 @@ curl http://127.0.0.1:11434/api/embeddings -d '{
 ```
 
 - python:
-```
+```python
 import openai
 
 client = openai.OpenAI(
