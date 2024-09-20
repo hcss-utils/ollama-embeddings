@@ -22,7 +22,7 @@ docker run -p 11434:11434 --name ollama-embeddings ollama-image
 docker run -d -p 127.0.0.1:11434:11434 --name ollama-embeddings ollama-image
 ```
 
-3. usage example:
+3. usage example (from within the server):
 - curl:
 ```console
 curl http://127.0.0.1:11434/api/embeddings -d '{
@@ -49,3 +49,23 @@ if __name__ == "__main__":
     print(embedding)
 ```
 
+4. (the simplest) usage example (with FastAPI):
+4.1. start a new tmux session:
+```console
+tmux new -s uvicorn_session
+```
+
+4.2 then run the following command (set a token in the [app.py](app.py)):
+```console
+uvicorn app:app --reload --host 0.0.0.0 --port 11435
+```
+
+4.3 dettach from the session:
+```
+Ctrl + B, then D
+```
+
+4.4 reattach later:
+```console
+tmux attach -t uvicorn_session
+```
