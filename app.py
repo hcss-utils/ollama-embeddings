@@ -34,3 +34,16 @@ async def proxy_embeddings(request: Request, token_valid: bool = Depends(verify_
         )
 
     return response.json()
+
+
+@app.post("/api/generate")
+async def proxy_llm(request: Request, token_valid: bool = Depends(verify_token)):
+    request_data = await request.json()
+
+    async with httpx.AsyncClient() as client:
+        response = await client.post(
+            "http://127.0.0.1:11434/api/generate",
+            json=request_data,
+            timeout=300,
+        )
+    return response.json()
